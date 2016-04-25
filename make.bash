@@ -29,6 +29,9 @@ javac jBookLibrary.java
 echo "> jar cfe jBookLibrary.jar jBookLibrary *.class resources/*"
 jar cfe jBookLibrary.jar jBookLibrary *.class resources/*
 
+echo "> chmod u+x jBookLibrary.jar"
+chmod u+x jBookLibrary.jar
+
 if [ "$path" != "." ]
 then
     echo "> mv jBookLibrary.jar \"$path/jBookLibrary.jar\""
