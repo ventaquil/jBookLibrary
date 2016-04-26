@@ -132,7 +132,7 @@ public class Directory {
             names[namesIndex++] = directory;
         }
         for (String book: books) {
-            names[namesIndex] = book;
+            names[namesIndex++] = book;
         }
 
         return names;
