@@ -71,8 +71,8 @@ public abstract class jBookLibrary {
 
     public static void moveTo(String path)
     {
-        if (path.substring(0, 3)
-                .equals("../")) {
+        if ((path.length() >= 3) && (path.substring(0, 3)
+                                         .equals("../"))) {
             directory = directory.substring(0, directory.lastIndexOf('/'));
         } else if (path.substring(path.length() - 1)
                        .equals("/")) {

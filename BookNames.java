@@ -157,9 +157,12 @@ public abstract class BookNames {
 
     private static String removePdf(String fileName)
     {
-        if (fileName.substring(fileName.lastIndexOf('.') + 1)
-                    .equals("pdf")) {
-            return fileName.substring(0, fileName.lastIndexOf('.'));
+        int lastIndexOf = fileName.lastIndexOf('.') + 1;
+        if (lastIndexOf < fileName.length()) {
+            if (fileName.substring(lastIndexOf)
+                        .equals("pdf")) {
+                return fileName.substring(0, fileName.lastIndexOf('.'));
+            }
         }
 
         return fileName;
