@@ -56,16 +56,10 @@ then
     exit
 fi
 
-if [ `ls -1 | grep class | wc -l` -gt 0 ]
+if [ `ls -R1 | grep class | wc -l` -gt 0 ]
 then
-    write "> rm *.class"
-    rm *.class
-fi
-
-if [ `ls -1 | grep jar | wc -l` -gt 0 ]
-then
-    write "> rm *.jar"
-    rm *.jar
+    write "> rm -r src/**.class"
+    rm -r src/**.class
 fi
 
 if [ "${path:${#path}-1:1}" == "/" ]
@@ -73,11 +67,16 @@ then
     path=${path:0:${#path}-1}
 fi
 
-write "> javac jBookLibrary.java"
-javac jBookLibrary.java
+write "> javac -cp src/ src/jBookLibrary.java"
+javac -cp src/ src/jBookLibrary.java
 
-write "> jar cfe jBookLibrary.jar jBookLibrary *.class resources/*"
-jar cfe jBookLibrary.jar jBookLibrary *.class resources/*
+if $verbose
+then
+    write "> jar cfmv jBookLibrary.jar Manifest.txt -C src/ ."
+    jar cfmv jBookLibrary.jar Manifest.txt -C src/ .
+else
+    jar cfm jBookLibrary.jar Manifest.txt -C src/ .
+fi
 
 write "> chmod u+x jBookLibrary.jar"
 chmod u+x jBookLibrary.jar
@@ -92,8 +91,8 @@ else
     realpath=$path
 fi
 
-write "> rm *.class"
-rm *.class
+write "> rm -r src/**.class"
+rm -r src/**.class
 
 if $execute
 then
